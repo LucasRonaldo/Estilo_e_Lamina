@@ -28,7 +28,7 @@ class ServicoFormRequest extends FormRequest
                 'nome' => 'required|max:80|min:5|unique:servicos,nome',
             'descricao' => 'required|max:200|min:10|',
             'duracao'  => 'required|numeric',
-            'preco' => 'required|decimal:1'
+            'preco' => 'required|decimal:2,4'
             
 
 
@@ -56,7 +56,7 @@ class ServicoFormRequest extends FormRequest
 'preco.required' => 'Preço obrigatório',
 'preco.preco' => 'Formato de preço inválido',
 'preco.unique' => 'Preço já cadastrado no sistema',
-'preco.decimal' => ''
+'preco.decimal' => 'Este campo recebe apenas numeros decimais'
 
         ];
     }

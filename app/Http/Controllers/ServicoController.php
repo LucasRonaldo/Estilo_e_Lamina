@@ -59,8 +59,8 @@ class ServicoController extends Controller
         $servico = Servico::where('nome', 'like', '%' . $request->nome . '%')->get();
         
         return response()->json([
-            'status' => true,
-            'message' => "Cliente não encontrado"
+            'status' => false,
+            'message' => "Servico não encontrado"
         ]);
 
         if (count($servico) > 0) {
