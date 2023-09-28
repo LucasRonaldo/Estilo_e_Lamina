@@ -111,7 +111,7 @@ class ProfissionalController extends Controller
                 'data' => $profissional
             ]);
         }
-
+       
         return response()->json([
             'status' => false,
             'message' => "Celular não encontrado"
