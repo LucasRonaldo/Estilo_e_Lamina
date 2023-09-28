@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,22 @@ Route::post('email/Cliente', [ClienteController::class, 'pesquisarClientePorEmai
 Route::put('update/Cliente', [ClienteController::class, 'updateCliente']); //atualizar e editar
 
 Route::delete('delete/Cliente/{id}', [ClienteController::class, 'excluirCliente']); //excluir
+
+
+
+//------------------------------------------------------------------------------PROFISSIONAL--------------------------------------------------------------------------------//
+
+Route::post('store/Profissional', [ProfissionalController::class, 'storeProfissional']); //Cadastrar
+
+Route::get('all/Profissional', [ProfissionalController::class, 'retornarTodosProfissionais']); //vizualizar
+
+Route::post('nome/Profissional', [ProfissionalController::class, 'pesquisarPorNomeProfissional']);
+Route::post('cpf/Profissional/{cpf}', [ProfissionalController::class, 'pesquisarPorCpfProfissional']);
+Route::post('celular/Profissional', [ProfissionalController::class, 'pesquisarPorCelularProfissional']);
+Route::post('email/Profissional', [ProfissionalController::class, 'pesquisarPorEmailProfissional']);
+
+
+Route::put('update/Profissional', [ProfissionalController::class, 'updateProfissional']); //atualizar e editar
+
+Route::delete('delete/Profissional/{id}', [ProfissionalController::class, 'excluirProfissional']); //excluir
+
