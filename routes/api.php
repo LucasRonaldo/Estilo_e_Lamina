@@ -73,3 +73,6 @@ Route::post('nome/Agenda', [AgendaController::class, 'pesquisarPorNomeAgenda']);
 Route::put('update/Agenda', [AgendaController::class, 'updateAgenda']); //atualizar e editar
 
 Route::delete('delete/Agenda/{id}', [AgendaController::class, 'excluirAgenda']); //excluir
+
+
+Route::post('Agenda/pesquisar', [AgendaController::class, 'pesquisarPorData']);

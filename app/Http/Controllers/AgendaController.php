@@ -15,8 +15,6 @@ class AgendaController extends Controller
 
 
             'profissional' => $request->profissional,
-            'cliente' => $request->cliente,
-            'servico' => $request->servico,
             'data_hora' => $request->data_hora,
             'pagamento' => $request->pagamento,
             'valor' => $request->valor
@@ -31,6 +29,23 @@ class AgendaController extends Controller
 
         ], 200);
     }
+
+    
+public function pesquisarPorData(Request $request)
+{
+   
+
+    $agenda = Agenda::where('data_hora', '>=', $request->data_hora ) -> get();
+        
+
+    if (count($agenda) > 0) {
+        return response()->json([
+            ' status' => true,
+            'data' => $agenda
+        ]);
+    }
+   
+}
 
 
 
