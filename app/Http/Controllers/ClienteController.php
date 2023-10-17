@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
-    public function storeCliente(ClienteFormRequest $request)
+    public function cadastrarCliente(ClienteFormRequest $request)
     {
 
         $cliente = Cliente::create([
@@ -54,27 +54,29 @@ class ClienteController extends Controller
             ]);
         }
 
-
-        
-        if( 'status' == false){
-            return response()->json([
-        
-                'data' => 'Nome não encontrado' ]);
-        }
+        return response()->json([
+            ' status' => false,
+            'message' => 'Nenhum cliente foi encontrado'
+        ]);
     }
 
 
 
     public function pesquisarClientePorCpf(Request $request)
     {
-        $cliente = Cliente::where('cpf', 'like', '%' . $request->cpf . '%')->get();
+        $cliente = Cliente::where('cpf', '=',  $request->cpf)->first();
 
-        if (count($cliente) > 0) {
+        if (isset($cliente)) {
             return response()->json([
                 ' status' => true,
                 'data' => $cliente
             ]);
         }
+
+        return response()->json([
+            ' status' => false,
+            'message' => 'Nenhum CPF encontrado'
+        ]);
     }
 
     public function pesquisarClientePorCelular(Request $request)
@@ -87,18 +89,28 @@ class ClienteController extends Controller
                 'data' => $cliente
             ]);
         }
+
+        return response()->json([
+            ' status' => false,
+            'message' => 'Nenhum celular foi encontrado'
+        ]);
     }
 
     public function pesquisarClientePorEmail(Request $request)
     {
-        $cliente = Cliente::where('email', 'like', '%' . $request->email . '%')->get();
+        $cliente = Cliente::where('email', '=', $request->email)->first();
 
-        if (count($cliente) > 0) {
+        if (isset($cliente)) {
             return response()->json([
                 ' status' => true,
                 'data' => $cliente
             ]);
         }
+
+        return response()->json([
+            ' status' => false,
+            'message' => 'Nenhum email foi encontrado'
+        ]);
     }
 
 
@@ -107,9 +119,16 @@ class ClienteController extends Controller
     public function retornarTodosClientes()
     {
         $cliente = Cliente::all();
+
+        if(count($cliente)>0){
+            return response()->json([
+                ' status' => true,
+                'data' => $cliente
+            ]);
+        }
         return response()->json([
-            ' status' => true,
-            'data' => $cliente
+            ' status' => false,
+            'data' => 'Não há nenhum cliente registrado'
         ]);
     }
 
@@ -132,7 +151,7 @@ class ClienteController extends Controller
         ]);
     }
 
-    public function updateCliente(ClienteUpdateFormRequest $request)
+    public function editarCliente(ClienteUpdateFormRequest $request)
     {
         $cliente = Cliente::find($request->id);
         if (!isset($cliente)) {
@@ -196,7 +215,4 @@ class ClienteController extends Controller
             'message' => 'Cliente atualizado.'
         ]);
     }
-
-
-
 }

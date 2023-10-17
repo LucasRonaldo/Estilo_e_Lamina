@@ -28,19 +28,19 @@ Route::put('update', [ServicoController::class, 'update']);
 
 //------------------------------------------------------------------------------CLIENTES--------------------------------------------------------------------------------//
 
-Route::post('store/Cliente', [ClienteController::class, 'storeCliente']); //Cadastrar
+Route::post('cadastrar/Cliente', [ClienteController::class, 'cadastrarCliente']); //Cadastrar
 
 Route::get('all/Cliente', [ClienteController::class, 'retornarTodosClientes']); //vizualizar
 
-Route::post('nome/Cliente', [ClienteController::class, 'pesquisarClientePorNome']);
-Route::post('cpf/Cliente/{cpf}', [ClienteController::class, 'pesquisarClientePorCpf']);
-Route::post('celular/Cliente', [ClienteController::class, 'pesquisarClientePorCelular']);
-Route::post('email/Cliente', [ClienteController::class, 'pesquisarClientePorEmail']);
+Route::get('nome/Cliente', [ClienteController::class, 'pesquisarClientePorNome']);
+Route::get('cpf/Cliente', [ClienteController::class, 'pesquisarClientePorCpf']);
+Route::get('celular/Cliente', [ClienteController::class, 'pesquisarClientePorCelular']);
+Route::get('email/Cliente', [ClienteController::class, 'pesquisarClientePorEmail']);
 
 
-Route::put('update/Cliente', [ClienteController::class, 'updateCliente']); //atualizar e editar
+Route::put('update/Cliente', [ClienteController::class, 'editarCliente']); //atualizar e editar
 
-Route::delete('delete/Cliente/{id}', [ClienteController::class, 'excluirCliente']); //excluir
+Route::delete('excluir/Cliente/{id}', [ClienteController::class, 'excluirCliente']); //excluir
 
 
 

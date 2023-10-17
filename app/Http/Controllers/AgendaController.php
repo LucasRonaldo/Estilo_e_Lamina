@@ -15,10 +15,12 @@ class AgendaController extends Controller
 
 
             'profissional' => $request->profissional,
+            'cliente'=>$request->cliente,
+            'servico'=>$request->servico,
             'data_hora' => $request->data_hora,
             'pagamento' => $request->pagamento,
             'valor' => $request->valor
-           
+
 
 
         ]);
@@ -30,26 +32,25 @@ class AgendaController extends Controller
         ], 200);
     }
 
-    
-public function pesquisarPorData(Request $request)
-{
-   
 
-    $agenda = Agenda::where('data_hora', '>=', $request->data_hora ) -> get();
-        
+    public function pesquisarPorData(Request $request)
+    {
 
-    if (count($agenda) > 0) {
-        return response()->json([
-            ' status' => true,
-            'data' => $agenda
-        ]);
+
+        $agenda = Agenda::where('data_hora', '>=', $request->data_hora)->get();
+
+
+        if (count($agenda) > 0) {
+            return response()->json([
+                ' status' => true,
+                'data' => $agenda
+            ]);
+        }
     }
-   
-}
 
 
 
-    public function pesquisarAgendaPorNome(AgendaFormRequest $request)
+    public function pesquisarAgendaPorNome(Request $request)
     {
         $agenda = Agenda::where('profissional', 'like', '%' . $request->profissional . '%')->get();
 
@@ -61,12 +62,12 @@ public function pesquisarPorData(Request $request)
         }
 
 
-        
-        if( 'status' == false){
-            return response()->json([
-        
-                'data' => 'Profissional não disponivel' ]);
-        }
+
+
+        return response()->json([
+            'status' => false,
+            'data' => 'Profissional não disponivel'
+        ]);
     }
 
 
@@ -129,7 +130,7 @@ public function pesquisarPorData(Request $request)
         if (isset($request->valor)) {
             $agenda->valor = $request->valor;
         }
-       
+
 
 
 
@@ -138,8 +139,7 @@ public function pesquisarPorData(Request $request)
 
         return response()->json([
             'status' => true,
-            'message' => 'Agenda atualizado.'
+            'message' => 'Agenda atualizada.'
         ]);
     }
-
 }
