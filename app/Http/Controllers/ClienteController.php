@@ -49,13 +49,13 @@ class ClienteController extends Controller
 
         if (count($cliente) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $cliente
             ]);
         }
 
         return response()->json([
-            ' status' => false,
+            'status' => false,
             'message' => 'Nenhum cliente foi encontrado'
         ]);
     }
@@ -68,13 +68,13 @@ class ClienteController extends Controller
 
         if (isset($cliente)) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $cliente
             ]);
         }
 
         return response()->json([
-            ' status' => false,
+            'status' => false,
             'message' => 'Nenhum CPF encontrado'
         ]);
     }
@@ -85,13 +85,13 @@ class ClienteController extends Controller
 
         if (count($cliente) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $cliente
             ]);
         }
 
         return response()->json([
-            ' status' => false,
+            'status' => false,
             'message' => 'Nenhum celular foi encontrado'
         ]);
     }
@@ -102,13 +102,13 @@ class ClienteController extends Controller
 
         if (isset($cliente)) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $cliente
             ]);
         }
 
         return response()->json([
-            ' status' => false,
+            'status' => false,
             'message' => 'Nenhum email foi encontrado'
         ]);
     }
@@ -122,12 +122,12 @@ class ClienteController extends Controller
 
         if(count($cliente)>0){
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $cliente
             ]);
         }
         return response()->json([
-            ' status' => false,
+            'status' => false,
             'data' => 'Não há nenhum cliente registrado'
         ]);
     }
