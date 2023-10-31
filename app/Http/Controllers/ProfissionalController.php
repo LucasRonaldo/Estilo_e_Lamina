@@ -128,7 +128,7 @@ class ProfissionalController extends Controller
     {
         $profissional = Profissional::all();
 
-        if (!isset($profissional)) {
+        if (count($profissional)< 0) {
             return response()->json([
                 'status' => false,
                 'message' => "Nenhum Profissional Registrado"

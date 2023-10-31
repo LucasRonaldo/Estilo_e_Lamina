@@ -46,7 +46,7 @@ Route::delete('excluir/Cliente/{id}', [ClienteController::class, 'excluirCliente
 
 //------------------------------------------------------------------------------PROFISSIONAL--------------------------------------------------------------------------------//
 
-Route::post('store/Profissional', [ProfissionalController::class, 'storeProfissional']); //Cadastrar
+Route::post('cadastrar/Profissional', [ProfissionalController::class, 'storeProfissional']); //Cadastrar
 
 Route::get('all/Profissional', [ProfissionalController::class, 'retornarTodosProfissionais']); //vizualizar
 
