@@ -34,11 +34,26 @@ class ClienteController extends Controller
 
         ]);
         return response()->json([
-            "success" => true,
+            "status" => true,
             "message" => "Cliente Cadastrado com sucesso",
             "data" => $cliente
 
         ], 200);
+    }
+    public function pesquisarPorId($id)
+    {
+        $cliente = Cliente::find($id);
+
+        if (!isset($cliente)) {
+            return response()->json([
+                'status' => false,
+                'message' => "cliente não cadastrado"
+            ]);
+        }
+        return response()->json([
+            ' status' => true,
+            'data' => $cliente
+        ]);
     }
 
 
@@ -201,10 +216,7 @@ class ClienteController extends Controller
         if (isset($request->complemento)) {
             $cliente->complemento = $request->complemento;
         }
-        if (isset($request->password)) {
-            $cliente->password = $request->password;
-        }
-
+        
 
 
 

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('store', [ServicoController::class, 'store']);
+Route::post('cadastrar/Servico', [ServicoController::class, 'store']);
 
 Route::get(
     'find/{id}',
@@ -36,6 +36,10 @@ Route::get('nome/Cliente', [ClienteController::class, 'pesquisarClientePorNome']
 Route::get('cpf/Cliente', [ClienteController::class, 'pesquisarClientePorCpf']);
 Route::get('celular/Cliente', [ClienteController::class, 'pesquisarClientePorCelular']);
 Route::get('email/Cliente', [ClienteController::class, 'pesquisarClientePorEmail']);
+Route::get(
+    'find/Cliente/{id}',
+    [ClienteController::class, 'pesquisarPorId']
+);
 
 
 Route::put('update/Cliente', [ClienteController::class, 'editarCliente']); //atualizar e editar
