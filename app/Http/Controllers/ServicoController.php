@@ -21,7 +21,7 @@ class ServicoController extends Controller
 
         ]);
         return response()->json([
-            "success" => true,
+            "status" => true,
             "message" => "Serviço Cadastrado com sucesso",
             "data" => $servico
 
@@ -48,7 +48,7 @@ class ServicoController extends Controller
     {
         $servico = Servico::all();
         return response()->json([
-            ' status' => true,
+            'status' => true,
             'data' => $servico
         ]);
     }

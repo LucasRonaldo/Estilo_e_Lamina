@@ -17,9 +17,9 @@ Route::get(
 );
 
 Route::get('find/cpf/{cpf}', [ServicoController::class, 'pesquisarPorCpf']);
-Route::get('all', [ServicoController::class, 'retornarTodos']);
+Route::get('all/Servico', [ServicoController::class, 'retornarTodos']);
 
-Route::post('nome', [ServicoController::class, 'pesquisarPorNome']);
+Route::post('nome/Servico', [ServicoController::class, 'pesquisarPorNome']);
 
 
 Route::delete('delete/{id}', [ServicoController::class, 'excluir']);

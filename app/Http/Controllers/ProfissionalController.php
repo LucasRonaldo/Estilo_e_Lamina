@@ -35,7 +35,7 @@ class ProfissionalController extends Controller
 
         ]);
         return response()->json([
-            "success" => true,
+            "status" => true,
             "message" => "Profissional Cadastrado com sucesso",
             "data" => $profissional
 
@@ -52,7 +52,7 @@ class ProfissionalController extends Controller
 
         if (count($profissional) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $profissional
             ]);
         }
@@ -73,7 +73,7 @@ class ProfissionalController extends Controller
 
         if (count($profissional) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $profissional
             ]);
         }
@@ -90,7 +90,7 @@ class ProfissionalController extends Controller
 
         if (count($profissional) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $profissional
             ]);
         }
@@ -107,7 +107,7 @@ class ProfissionalController extends Controller
 
         if (count($profissional) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $profissional
             ]);
         }
@@ -128,17 +128,19 @@ class ProfissionalController extends Controller
     {
         $profissional = Profissional::all();
 
-        if (count($profissional)< 0) {
+        if (count($profissional)> 0) {
             return response()->json([
-                'status' => false,
-                'message' => "Nenhum Profissional Registrado"
+                'status' => true,
+                'data' => $profissional
             ]);
+           
         }
-
         return response()->json([
-            ' status' => true,
-            'data' => $profissional
+            'status' => false,
+            'message' => "Nenhum Profissional Registrado"
         ]);
+
+        
     }
 
 

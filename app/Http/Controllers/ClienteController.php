@@ -34,9 +34,9 @@ class ClienteController extends Controller
 
         ]);
         return response()->json([
-            "status" => true,
-            "message" => "Cliente Cadastrado com sucesso",
-            "data" => $cliente
+            'status' => true,
+            'message' => 'Cliente Cadastrado com sucesso',
+            'data' => $cliente
 
         ], 200);
     }
