@@ -24,20 +24,20 @@ class ClienteUpdateFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|max:120|min:5',
-            'celular' => 'required|max:11|min:10|',
-            'email'  => 'required|max:120|unique:clientes,email',
-            'cpf' => 'required|max:11|min:11|unique:clientes,cpf',
-            'dataNascimento' => 'required',
-            'cidade' => 'required|max:120|',
-            'estado' => 'required|max:2|min:2',
-            'pais' => 'required|max:80',
-            'rua' => 'required|max:120',
-            'numero' => 'required|max:10',
-            'bairro' => 'required|max:100',
-            'cep' => 'required|max:8',
+            'nome' => '|max:120|min:5',
+            'celular' => '|max:11|min:10|',
+            'email'  => '|max:120|',
+            'cpf' => '|max:11|min:11|',
+            'dataNascimento' => '',
+            'cidade' => '|max:120|',
+            'estado' => '|max:2|min:2',
+            'pais' => '|max:80',
+            'rua' => '|max:120',
+            'numero' => '|max:10',
+            'bairro' => '|max:100',
+            'cep' => '|max:8',
             'complemento' => 'max:150',
-            'password' => 'required'
+            'password' => ''
     
         ];
     }
@@ -63,12 +63,10 @@ class ClienteUpdateFormRequest extends FormRequest
 
           
             'email.email' => 'formato inválido',
-            'email.unique' => 'email já cadastrado no sistema',
 
             
             'cpf.max' => 'o campo deve conter 11 caracteris',
             'cpf.min' => 'o campo deve no minimo 11 caracteris',
-            'cpf.unique' => 'esse cpf já foi cadastrado no sistema',
 
             
             'dataNascimento.date'=>'coloque sua data corretamente',
@@ -90,7 +88,7 @@ class ClienteUpdateFormRequest extends FormRequest
             'rua.max' => 'Este campo deve conter no maximo 120 caractéris',
             
 
-            'numero.required' => 'Preencha o campo numero',
+           
             'numero.max' => 'Este campo deve conter no maximo 10 caractéris',
 
             

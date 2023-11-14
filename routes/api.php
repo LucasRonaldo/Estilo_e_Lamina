@@ -12,19 +12,19 @@ use Illuminate\Support\Facades\Route;
 Route::post('cadastrar/Servico', [ServicoController::class, 'store']);
 
 Route::get(
-    'find/{id}',
+    'find/servico/{id}',
     [ServicoController::class, 'pesquisarPorId']
 );
 
 Route::get('find/cpf/{cpf}', [ServicoController::class, 'pesquisarPorCpf']);
-Route::get('all/Servico', [ServicoController::class, 'retornarTodos']);
+Route::get('all/servico', [ServicoController::class, 'retornarTodos']);
 
-Route::post('nome/Servico', [ServicoController::class, 'pesquisarPorNome']);
+Route::post('nome/servico', [ServicoController::class, 'pesquisarPorNome']);
 
 
-Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
+Route::delete('delete/servico/{id}', [ServicoController::class, 'excluir']);
 
-Route::put('update', [ServicoController::class, 'update']);
+Route::put('update/servico', [ServicoController::class, 'update']);
 
 //------------------------------------------------------------------------------CLIENTES--------------------------------------------------------------------------------//
 
@@ -44,7 +44,7 @@ Route::get(
 
 Route::put('update/Cliente', [ClienteController::class, 'editarCliente']); //atualizar e editar
 
-Route::delete('excluir/Cliente/{id}', [ClienteController::class, 'excluirCliente']); //excluir
+Route::delete('excluir/cliente/{id}', [ClienteController::class, 'excluirCliente']); //excluir
 
 
 
