@@ -14,9 +14,9 @@ Route::post('cadastrar/Servico', [ServicoController::class, 'store']);
 Route::get(
     'find/servico/{id}',
     [ServicoController::class, 'pesquisarPorId']
-);
+);  
 
-Route::get('find/cpf/{cpf}', [ServicoController::class, 'pesquisarPorCpf']);
+Route::get('find/servico/cpf/{cpf}', [ServicoController::class, 'pesquisarPorCpf']);
 Route::get('all/servico', [ServicoController::class, 'retornarTodos']);
 
 Route::post('nome/servico', [ServicoController::class, 'pesquisarPorNome']);
@@ -28,11 +28,14 @@ Route::put('update/servico', [ServicoController::class, 'update']);
 
 //------------------------------------------------------------------------------CLIENTES--------------------------------------------------------------------------------//
 
+
+
+
 Route::post('cadastrar/Cliente', [ClienteController::class, 'cadastrarCliente']); //Cadastrar
 
 Route::get('all/Cliente', [ClienteController::class, 'retornarTodosClientes']); //vizualizar
 
-Route::get('nome/Cliente', [ClienteController::class, 'pesquisarClientePorNome']);
+Route::post('nome/Cliente', [ClienteController::class, 'pesquisarClientePorNome']);
 Route::get('cpf/Cliente', [ClienteController::class, 'pesquisarClientePorCpf']);
 Route::get('celular/Cliente', [ClienteController::class, 'pesquisarClientePorCelular']);
 Route::get('email/Cliente', [ClienteController::class, 'pesquisarClientePorEmail']);
@@ -40,6 +43,8 @@ Route::get(
     'find/Cliente/{id}',
     [ClienteController::class, 'pesquisarPorId']
 );
+Route::post('recuperar/senha', [ClienteController::class, 'recuperarSenha']);
+Route::get('exportar/csv/cliente', [ClienteController::class, 'exportarCsvCliente']);
 
 
 Route::put('update/Cliente', [ClienteController::class, 'editarCliente']); //atualizar e editar
@@ -58,7 +63,10 @@ Route::post('nome/Profissional', [ProfissionalController::class, 'pesquisarPorNo
 Route::post('cpf/Profissional/{cpf}', [ProfissionalController::class, 'pesquisarPorCpfProfissional']);
 Route::post('celular/Profissional', [ProfissionalController::class, 'pesquisarPorCelularProfissional']);
 Route::post('email/Profissional', [ProfissionalController::class, 'pesquisarPorEmailProfissional']);
-
+Route::get(
+    'find/profissional/{id}',
+    [ProfissionalController::class, 'pesquisarPorId']
+);
 
 Route::put('update/Profissional', [ProfissionalController::class, 'updateProfissional']); //atualizar e editar
 

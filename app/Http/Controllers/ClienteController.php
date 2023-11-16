@@ -7,6 +7,7 @@ use App\Http\Requests\ClienteUpdateFormRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 
 class ClienteController extends Controller
 {
@@ -226,5 +227,79 @@ class ClienteController extends Controller
             'status' => true,
             'message' => 'Cliente atualizado.'
         ]);
+    }
+
+    public function exportarCsvCliente()
+    {
+        $cliente = Cliente  ::all();
+
+        $nomeArquivo = 'usuarios.csv';
+
+        $filePath = storage_path('app/public/' . $nomeArquivo);
+
+        $handle = fopen($filePath, 'w');
+
+        fputcsv($handle, array('ID','nome',
+        'celular',
+        'email',
+        'cpf',
+        'dataNascimento',
+        'cidade',
+        'estado',
+        'pais',
+        'rua',
+        'numero',
+        'bairro',
+        'cep',
+        'complemento'), ';');
+
+        foreach ($cliente as $u) {
+            fputcsv($handle, array(
+                $u->id,
+                $u-> nome,
+                $u ->celular,
+                $u ->email,
+                $u ->cpf,
+                $u-> dataNascimento,
+                $u-> cidade,
+                $u-> estado,
+                $u-> pais,
+                $u-> rua,
+                $u-> numero,
+                $u-> bairro,
+                $u-> cep,
+                $u-> complemento,
+                
+
+                
+            ), ';');
+
+           
+        }
+
+        fclose( $handle);
+
+        return Response::download(public_path().'/storage/'.$nomeArquivo)->deleteFileAfterSend(true);
+    }
+
+
+    public function recuperarSenha(Request $request)
+    {
+
+        $cliente = Cliente::where('email', '=', $request->email)->first();
+
+        if (!isset($cliente)) {
+            return response()->json([
+                'status' => false,
+                'data' => "Profissional não encontrado"
+
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'password' => $cliente->cpf
+        ]);
+
     }
 }

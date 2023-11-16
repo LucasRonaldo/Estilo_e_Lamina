@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfissionalFormRequest;
+use App\Http\Requests\ProfissionalUpdateFormRequest;
 use App\Models\Profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -40,6 +41,22 @@ class ProfissionalController extends Controller
             "data" => $profissional
 
         ], 200);
+    }
+
+    public function pesquisarPorId($id)
+    {
+        $profissional = Profissional::find($id);
+
+        if (!isset($profissional)) {
+            return response()->json([
+                'status' => false,
+                'message' => "cliente não cadastrado"
+            ]);
+        }
+        return response()->json([
+            ' status' => true,
+            'data' => $profissional
+        ]);
     }
 
     
@@ -162,7 +179,7 @@ class ProfissionalController extends Controller
         ]);
     }
 
-    public function updateProfissional(ProfissionalFormRequest $request)
+    public function updateProfissional(ProfissionalUpdateFormRequest $request)
     {
         $profissional = Profissional::find($request->id);
         if (!isset($profissional)) {
