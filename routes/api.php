@@ -43,7 +43,7 @@ Route::get(
     'find/Cliente/{id}',
     [ClienteController::class, 'pesquisarPorId']
 );
-Route::put('recuperar/senha/Cliente', [ClienteController::class, 'recuperarSenha']);
+Route::put ('recuperar/senha/Cliente', [ClienteController::class, 'recuperarSenha']);
 Route::get('exportar/csv/cliente', [ClienteController::class, 'exportarCsvCliente']);
 
 
@@ -67,6 +67,7 @@ Route::get(
     'find/profissional/{id}',
     [ProfissionalController::class, 'pesquisarPorId']
 );
+Route::put ('recuperar/senha/profissional', [ProfissionalController::class, 'recuperarSenha']);
 
 Route::put('update/Profissional', [ProfissionalController::class, 'updateProfissional']); //atualizar e editar
 
