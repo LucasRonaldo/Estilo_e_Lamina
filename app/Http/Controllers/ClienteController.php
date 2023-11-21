@@ -52,7 +52,7 @@ class ClienteController extends Controller
             ]);
         }
         return response()->json([
-            ' status' => true,
+            'status' => true,
             'data' => $cliente
         ]);
     }
@@ -136,7 +136,7 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::all();
 
-        if(count($cliente)>0){
+        if (count($cliente) > 0) {
             return response()->json([
                 'status' => true,
                 'data' => $cliente
@@ -173,7 +173,7 @@ class ClienteController extends Controller
         if (!isset($cliente)) {
             return response()->json([
                 'status' => false,
-                'message' => "Cliente não Sencontrado"
+                'message' => "Cliente não encontrado"
             ]);
         }
 
@@ -217,7 +217,7 @@ class ClienteController extends Controller
         if (isset($request->complemento)) {
             $cliente->complemento = $request->complemento;
         }
-        
+
 
 
 
@@ -229,58 +229,6 @@ class ClienteController extends Controller
         ]);
     }
 
-    public function exportarCsvCliente()
-    {
-        $cliente = Cliente  ::all();
-
-        $nomeArquivo = 'usuarios.csv';
-
-        $filePath = storage_path('app/public/' . $nomeArquivo);
-
-        $handle = fopen($filePath, 'w');
-
-        fputcsv($handle, array('ID','nome',
-        'celular',
-        'email',
-        'cpf',
-        'dataNascimento',
-        'cidade',
-        'estado',
-        'pais',
-        'rua',
-        'numero',
-        'bairro',
-        'cep',
-        'complemento'), ';');
-
-        foreach ($cliente as $u) {
-            fputcsv($handle, array(
-                $u->id,
-                $u-> nome,
-                $u ->celular,
-                $u ->email,
-                $u ->cpf,
-                $u-> dataNascimento,
-                $u-> cidade,
-                $u-> estado,
-                $u-> pais,
-                $u-> rua,
-                $u-> numero,
-                $u-> bairro,
-                $u-> cep,
-                $u-> complemento,
-                
-
-                
-            ), ';');
-
-           
-        }
-
-        fclose( $handle);
-
-        return Response::download(public_path().'/storage/'.$nomeArquivo)->deleteFileAfterSend(true);
-    }
 
 
     public function recuperarSenha(Request $request)
@@ -291,15 +239,18 @@ class ClienteController extends Controller
         if (!isset($cliente)) {
             return response()->json([
                 'status' => false,
-                'data' => "Profissional não encontrado"
+                'message' => "Email invalido"
 
             ]);
         }
+        if (isset($cliente->cpf)) {
+            $cliente->password = $cliente->cpf;
+        }
+        $cliente->update();
 
         return response()->json([
             'status' => true,
             'password' => $cliente->cpf
         ]);
-
     }
 }

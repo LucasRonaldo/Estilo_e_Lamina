@@ -43,7 +43,7 @@ Route::get(
     'find/Cliente/{id}',
     [ClienteController::class, 'pesquisarPorId']
 );
-Route::post('recuperar/senha', [ClienteController::class, 'recuperarSenha']);
+Route::put('recuperar/senha/Cliente', [ClienteController::class, 'recuperarSenha']);
 Route::get('exportar/csv/cliente', [ClienteController::class, 'exportarCsvCliente']);
 
 
