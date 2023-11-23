@@ -24,13 +24,10 @@ class AgendaFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profissional_id' => 'required|',
-        'cliente_id' => '|integer',
-        'servico_id'  => '|integer',
-        'data_hora' => 'required|date',
-        'pagamento' => 'required|max:20|min:3',
-        'valor' => 'required|decimal:2,4'
-        ];
+            'profissional_id' => 'required|integer',
+       
+        'data_hora' => 'required|date'
+                ];
     }
 
     public function failedValidation(Validator $validator){

@@ -15,8 +15,7 @@ class AgendaController extends Controller
 
 
             'profissional_id' => $request->profissional,
-            'cliente_id'=>$request->cliente,
-            'servico_id'=>$request->servico,
+            
             'data_hora' => $request->data_hora,
             'pagamento' => $request->pagamento,
             'valor' => $request->valor
@@ -25,7 +24,7 @@ class AgendaController extends Controller
 
         ]);
         return response()->json([
-            "success" => true,
+            "status" => true,
             "message" => "Agenda Cadastrada com sucesso",
             "data" => $agenda
 
@@ -42,7 +41,7 @@ class AgendaController extends Controller
 
         if (count($agenda) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $agenda
             ]);
         }
@@ -56,7 +55,7 @@ class AgendaController extends Controller
 
         if (count($agenda) > 0) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $agenda
             ]);
         }
@@ -80,7 +79,7 @@ class AgendaController extends Controller
     {
         $agenda = Agenda::all();
         return response()->json([
-            ' status' => true,
+            'status' => true,
             'data' => $agenda
         ]);
     }

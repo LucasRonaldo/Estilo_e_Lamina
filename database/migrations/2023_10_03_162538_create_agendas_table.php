@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('agendas', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('profissional_id', )->nullable(false);
-            $table->bigInteger('cliente', )->nullable(true);
-            $table->string('servico', )->nullable(true);
+            $table->bigInteger('cliente_id', )->nullable(true);
+            $table->string('servico_id', )->nullable(true);
             $table->dateTime('data_hora',  )->nullable(false);
-            $table->string('pagamento',20)->nullable(false);
+            $table->string('pagamento',20)->nullable(true);
             $table->string('valor',)->nullable(false);
             
             $table->timestamps();
