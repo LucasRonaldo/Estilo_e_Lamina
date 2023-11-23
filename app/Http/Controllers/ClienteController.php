@@ -245,12 +245,14 @@ class ClienteController extends Controller
         }
         if (isset($cliente->cpf)) {
             $cliente->password = $cliente->cpf;
+            $cliente->password = Hash::make( $cliente->password );
+            
         }
         $cliente->update();
 
         return response()->json([
             'status' => true,
-            'password' => $cliente->cpf
+            'password' => $cliente->password
         ]);
     }
 }

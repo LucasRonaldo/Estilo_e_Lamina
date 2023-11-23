@@ -24,7 +24,7 @@ class AgendaFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profissional' => 'required|',
+            'profissional_id' => 'required|',
         'cliente' => '|integer',
         'servico'  => '|integer',
         'data_hora' => 'required|date',
@@ -44,7 +44,7 @@ class AgendaFormRequest extends FormRequest
     public function messages()
     {
         return  [
-            'profissional.required' => 'Preencha o campo profissional',
+            'profissional_id.required' => 'Preencha o campo profissional',
             
 
 

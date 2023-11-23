@@ -4,7 +4,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -76,7 +76,7 @@ Route::delete('delete/Profissional/{id}', [ProfissionalController::class, 'exclu
 
 
 
-Route::post('store/Agenda', [AgendaController::class, 'storeAgenda']); //Cadastrar
+Route::post('cadastrar/agenda', [AgendaController::class, 'cadastroAgenda']); //Cadastrar
 
 Route::get('all/Agenda', [AgendaController::class, 'retornarTodosAgendas']); //vizualizar
 

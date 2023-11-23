@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class AgendaController extends Controller
 {
-    public function storeAgenda(AgendaFormRequest $request)
+    public function cadastroAgenda(AgendaFormRequest $request)
     {
 
         $agenda = Agenda::create([
 
 
-            'profissional' => $request->profissional,
+            'profissional_id' => $request->profissional,
             'cliente'=>$request->cliente,
             'servico'=>$request->servico,
             'data_hora' => $request->data_hora,
