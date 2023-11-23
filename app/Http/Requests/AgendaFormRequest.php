@@ -25,8 +25,8 @@ class AgendaFormRequest extends FormRequest
     {
         return [
             'profissional_id' => 'required|',
-        'cliente' => '|integer',
-        'servico'  => '|integer',
+        'cliente_id' => '|integer',
+        'servico_id'  => '|integer',
         'data_hora' => 'required|date',
         'pagamento' => 'required|max:20|min:3',
         'valor' => 'required|decimal:2,4'

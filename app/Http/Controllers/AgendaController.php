@@ -15,8 +15,8 @@ class AgendaController extends Controller
 
 
             'profissional_id' => $request->profissional,
-            'cliente'=>$request->cliente,
-            'servico'=>$request->servico,
+            'cliente_id'=>$request->cliente,
+            'servico_id'=>$request->servico,
             'data_hora' => $request->data_hora,
             'pagamento' => $request->pagamento,
             'valor' => $request->valor
