@@ -37,22 +37,10 @@ Este é um sistema de gerenciamento desenvolvido para permitir o cadastro e gere
 - **Exclusão:** Remove um agendamento do sistema.
 - **Busca por Data e por Código do Profissional:** Permite a busca de agendamentos por data ou pelo código do profissional.
 
-## Tecnologias Utilizadas
-- **Linguagem de Programação:** [Inserir linguagem utilizada]
-- **Banco de Dados:** [Inserir banco de dados utilizado]
-- **Frameworks/Librarias:** [Inserir frameworks ou bibliotecas utilizadas, se aplicável]
 
 ## Instalação e Execução
 1. Faça o download ou clone este repositório.
 2. [Passos de instalação, configuração e execução do sistema]
-
-## Contribuição
-Contribuições são bem-vindas! Caso queira contribuir com melhorias ou correções, siga os passos abaixo:
-1. Faça um fork do projeto.
-2. Crie uma branch para sua contribuição (`git checkout -b feature/MinhaContribuicao`).
-3. Faça commit das mudanças (`git commit -am 'Adicionando nova funcionalidade'`).
-4. Faça push para a branch (`git push origin feature/MinhaContribuicao`).
-5. Abra um Pull Request.
 
 ## Autor
 [Seu Nome]
