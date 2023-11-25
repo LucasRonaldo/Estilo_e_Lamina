@@ -6,61 +6,56 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+# Sistema de Gerenciamento
 
-## About Laravel
+Este é um sistema de gerenciamento desenvolvido para permitir o cadastro e gerenciamento de clientes, serviços, profissionais e agendas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Cadastro de Clientes
+- **Salvar:** Adiciona um novo cliente ao sistema.
+- **Atualizar:** Permite a atualização dos dados de um cliente existente.
+- **Pesquisar por Nome e CPF:** Localiza um cliente específico através do nome ou do CPF.
+- **Excluir:** Remove um cliente do banco de dados.
+- **Recuperação de Senha:** Funcionalidade para auxiliar na recuperação de senha do cliente.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Cadastro de Serviços
+- **Salvar:** Permite a adição de novos serviços ao sistema.
+- **Atualizar:** Permite a atualização das informações de um serviço existente.
+- **Pesquisar por Nome ou Descrição:** Facilita a busca de serviços através do nome ou descrição.
+- **Excluir:** Remove um serviço do sistema.
 
-## Learning Laravel
+### Cadastro de Profissionais
+- **Salvar:** Adiciona um novo profissional ao banco de dados.
+- **Atualizar:** Permite a atualização dos dados de um profissional existente.
+- **Pesquisar por Nome e Email:** Facilita a busca de um profissional pelo nome ou email.
+- **Recuperação de Senha:** Funcionalidade para auxiliar na recuperação de senha do profissional.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Cadastro de Agenda
+- **Cadastro Vinculando Data e Horário ao Profissional:** Permite agendar um horário para um profissional em uma data específica.
+- **Atualização:** Permite a alteração do horário agendado.
+- **Exclusão:** Remove um agendamento do sistema.
+- **Busca por Data e por Código do Profissional:** Permite a busca de agendamentos por data ou pelo código do profissional.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Tecnologias Utilizadas
+- **Linguagem de Programação:** [Inserir linguagem utilizada]
+- **Banco de Dados:** [Inserir banco de dados utilizado]
+- **Frameworks/Librarias:** [Inserir frameworks ou bibliotecas utilizadas, se aplicável]
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalação e Execução
+1. Faça o download ou clone este repositório.
+2. [Passos de instalação, configuração e execução do sistema]
 
-## Laravel Sponsors
+## Contribuição
+Contribuições são bem-vindas! Caso queira contribuir com melhorias ou correções, siga os passos abaixo:
+1. Faça um fork do projeto.
+2. Crie uma branch para sua contribuição (`git checkout -b feature/MinhaContribuicao`).
+3. Faça commit das mudanças (`git commit -am 'Adicionando nova funcionalidade'`).
+4. Faça push para a branch (`git push origin feature/MinhaContribuicao`).
+5. Abra um Pull Request.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Autor
+[Seu Nome]
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Licença
+Este projeto está sob a licença [Inserir Licença]. Consulte o arquivo LICENSE para mais detalhes.
