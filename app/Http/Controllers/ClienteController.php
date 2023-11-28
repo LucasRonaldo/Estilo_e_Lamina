@@ -34,13 +34,130 @@ class ClienteController extends Controller
 
 
         ]);
+
+        if(isset($cliente)){
+
+            return response()->json([
+                'status' => true,
+                'title'=>'Cadastrado',
+                'message' => 'Cliente Cadastrado com sucesso',
+                'data' => $cliente
+    
+            ], 200);
+        }
+
         return response()->json([
-            'status' => true,
-            'message' => 'Cliente Cadastrado com sucesso',
+            'status' => false,
+            'title'=>'Erro',
+            'message' => 'Cliente não foi cadastrado',
             'data' => $cliente
 
         ], 200);
+
+        
     }
+
+    public function retornarTodosClientes()
+    {
+        $cliente = Cliente::all();
+
+        if (count($cliente) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $cliente
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'data' => 'Não há nenhum cliente registrado'
+        ]);
+    }
+    
+    public function excluirCliente($id)
+    {
+        $cliente = Cliente::find($id);
+
+        if (!isset($cliente)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Cliente não encontrado"
+            ]);
+        }
+
+        $cliente->delete();
+        return response()->json([
+            'status' => true,
+            'message' => "Cliente excluido com sucesso"
+        ]);
+    }
+
+    public function editarCliente(ClienteUpdateFormRequest $request)
+    {
+        $cliente = Cliente::find($request->id);
+        if (!isset($cliente)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Cliente não encontrado"
+            ]);
+        }
+
+        if (isset($request->nome)) {
+            $cliente->nome = $request->nome;
+        }
+
+        if (isset($request->celular)) {
+            $cliente->celular = $request->celular;
+        }
+        if (isset($request->email)) {
+            $cliente->email = $request->email;
+        }
+        if (isset($request->cpf)) {
+            $cliente->cpf = $request->cpf;
+        }
+        if (isset($request->dataNascimento)) {
+            $cliente->dataNascimento = $request->dataNascimento;
+        }
+        if (isset($request->cidade)) {
+            $cliente->cidade = $request->cidade;
+        }
+        if (isset($request->estado)) {
+            $cliente->estado = $request->estado;
+        }
+        if (isset($request->pais)) {
+            $cliente->pais = $request->pais;
+        }
+        if (isset($request->rua)) {
+            $cliente->rua = $request->rua;
+        }
+        if (isset($request->numero)) {
+            $cliente->numero = $request->numero;
+        }
+        if (isset($request->bairro)) {
+            $cliente->bairro = $request->bairro;
+        }
+        if (isset($request->cep)) {
+            $cliente->cep = $request->cep;
+        }
+        if (isset($request->complemento)) {
+            $cliente->complemento = $request->complemento;
+        }
+
+
+
+
+        $cliente->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Cliente atualizado.'
+        ]);
+    }
+
+
+    //Pesquisas
+
+
+
     public function pesquisarPorId($id)
     {
         $cliente = Cliente::find($id);
@@ -129,108 +246,6 @@ class ClienteController extends Controller
         ]);
     }
 
-
-
-
-    public function retornarTodosClientes()
-    {
-        $cliente = Cliente::all();
-
-        if (count($cliente) > 0) {
-            return response()->json([
-                'status' => true,
-                'data' => $cliente
-            ]);
-        }
-        return response()->json([
-            'status' => false,
-            'data' => 'Não há nenhum cliente registrado'
-        ]);
-    }
-
-
-    public function excluirCliente($id)
-    {
-        $cliente = Cliente::find($id);
-
-        if (!isset($cliente)) {
-            return response()->json([
-                'status' => false,
-                'message' => "Cliente não encontrado"
-            ]);
-        }
-
-        $cliente->delete();
-        return response()->json([
-            'status' => true,
-            'message' => "Cliente excluido com sucesso"
-        ]);
-    }
-
-    public function editarCliente(ClienteUpdateFormRequest $request)
-    {
-        $cliente = Cliente::find($request->id);
-        if (!isset($cliente)) {
-            return response()->json([
-                'status' => false,
-                'message' => "Cliente não encontrado"
-            ]);
-        }
-
-        if (isset($request->nome)) {
-            $cliente->nome = $request->nome;
-        }
-
-        if (isset($request->celular)) {
-            $cliente->celular = $request->celular;
-        }
-        if (isset($request->email)) {
-            $cliente->email = $request->email;
-        }
-        if (isset($request->cpf)) {
-            $cliente->cpf = $request->cpf;
-        }
-        if (isset($request->dataNascimento)) {
-            $cliente->dataNascimento = $request->dataNascimento;
-        }
-        if (isset($request->cidade)) {
-            $cliente->cidade = $request->cidade;
-        }
-        if (isset($request->estado)) {
-            $cliente->estado = $request->estado;
-        }
-        if (isset($request->pais)) {
-            $cliente->pais = $request->pais;
-        }
-        if (isset($request->rua)) {
-            $cliente->rua = $request->rua;
-        }
-        if (isset($request->numero)) {
-            $cliente->numero = $request->numero;
-        }
-        if (isset($request->bairro)) {
-            $cliente->bairro = $request->bairro;
-        }
-        if (isset($request->cep)) {
-            $cliente->cep = $request->cep;
-        }
-        if (isset($request->complemento)) {
-            $cliente->complemento = $request->complemento;
-        }
-
-
-
-
-        $cliente->update();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Cliente atualizado.'
-        ]);
-    }
-
-
-
     public function recuperarSenha(Request $request)
     {
 
@@ -243,9 +258,10 @@ class ClienteController extends Controller
 
             ]);
         }
+
         if (isset($cliente->cpf)) {
-            $cliente->password = $cliente->cpf;
-            $cliente->password = Hash::make( $cliente->password );
+           
+            $cliente->password = Hash::make( $cliente->cpf );
             
         }
         $cliente->update();
@@ -256,3 +272,5 @@ class ClienteController extends Controller
         ]);
     }
 }
+
+//Pronto

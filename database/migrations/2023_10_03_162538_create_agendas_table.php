@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('servico_id', )->nullable(true);
             $table->dateTime('data_hora',  )->nullable(false);
             $table->string('pagamento',20)->nullable(true);
-            $table->string('valor',)->nullable(false);
+            $table->string('valor',)->nullable(true);
             
             $table->timestamps();
         });

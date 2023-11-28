@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 
 class ServicoController extends Controller
 {
-    public function store(ServicoFormRequest $request){
+    public function cadastrarServico(ServicoFormRequest $request)
+    {
 
         $servico = Servico::create([
-            
+
 
             'nome' => $request->nome,
             'descricao' => $request->descricao,
@@ -29,67 +30,25 @@ class ServicoController extends Controller
         ], 200);
     }
 
-    public function pesquisarPorId($id)
-    {
-        $servico = Servico::find($id);
 
-        if ($servico == null) {
-            return response()->json([
-                'status' => false,
-                'message' => "Serviço não cadastrado"
-            ]);
-        }
-        return response()->json([
-            ' status' => true,
-            'data' => $servico
-        ]);
-    }
 
-    public function retornarTodos()
+    public function retornarTodosServicos()
     {
         $servico = Servico::all();
-        return response()->json([
-            'status' => true,
-            'data' => $servico
-        ]);
-    }
-
-   
-    public function pesquisarPorNome(Request $request)
-    {
-        $servico = Servico::where('nome', 'like', '%' . $request->nome . '%')->get();
-        
-        return response()->json([
-            'status' => false,
-            'message' => "Servico não encontrado"
-        ]);
-
-        if (count($servico) > 0) {
+        if (isset($servico)) {
             return response()->json([
-                ' status' => true,
+                'status' => true,
                 'data' => $servico
             ]);
         }
-    }
-    public function excluir($id)
-    {
-        $servico = Servico::find($id);
 
-        if (!isset($servico)) {
-            return response()->json([
-                'status' => false,
-                'message' => "Serviço não Sencontrado"
-            ]);
-        }
-
-        $servico->delete();
         return response()->json([
-            'status' => true,
-            'message' => "Serviço excluido com sucesso"
+            'status' => false,
+            'data' => 'Não há nenhum registro no sistema!'
         ]);
     }
 
-    public function update(ServicoUpdateFormRequest $request)
+    public function editarServico(ServicoUpdateFormRequest $request)
     {
         $servico = Servico::find($request->id);
         if (!isset($servico)) {
@@ -123,6 +82,79 @@ class ServicoController extends Controller
             'message' => 'Serviço atualizado.'
         ]);
     }
+
+    public function excluirServico($id)
+    {
+        $servico = Servico::find($id);
+
+        if (!isset($servico)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Serviço não encontrado"
+            ]);
+        }
+
+        $servico->delete();
+        return response()->json([
+            'status' => true,
+            'message' => "Serviço excluido com sucesso!"
+        ]);
+    }
+
+
+    //Pesquisas
+
+    public function pesquisarPorId($id)
+    {
+        $servico = Servico::find($id);
+
+        if (!isset($servico)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Serviço não encontrado"
+            ]);
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $servico
+        ]);
+    }
+
+    public function pesquisarPorNome(Request $request)
+    {
+        $servico = Servico::where('nome', 'like', '%' . $request->nome . '%')->get();
+
+
+        if (count($servico) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $servico
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => "Servico não encontrado"
+        ]);
+    }
+
+    public function pesquisarPorDescricao(Request $request)
+    {
+        $servico = Servico::where('descricao', 'like', '%' . $request->descricao . '%')->get();
+
+
+        if (count($servico) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $servico
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => "Descrição não foi encontrado"
+        ]);
+    }
 }
 
-
+//Pronto

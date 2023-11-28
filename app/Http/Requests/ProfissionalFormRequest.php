@@ -54,64 +54,45 @@ class ProfissionalFormRequest extends FormRequest
     public function messages()
     {
         return  [
-            'nome.required' => 'Preencha o campo nome',
-            'nome.max' => 'Este campo deve conter no maximo 120 caractéris',
-            'nome.min' => 'Este campo deve conter no minimo 5 caractéris',
-
-
-            'celular.required' => 'Preencha o campo celular',
-            'celular.max' => 'Este campo deve conter no maximo 11 caractéris',
-            'celular.min' => 'Este campo deve conter no minimo 10 caractéris',
-
-            'email.required' =>  'email obrigatório',
-            'email.email' => 'formato inválido',
-            'email.unique' => 'email já cadastrado no sistema',
-
-            'cpf.required' => 'preencha o campo',
-            'cpf.max' => 'o campo deve conter 11 caracteris',
-            'cpf.min' => 'o campo deve no minimo 11 caracteris',
-            'cpf.unique' => 'esse cpf já foi cadastrado no sistema',
-
-            'dataNascimento.required'=>'Preencha esse campo com sua data de nascimento',
-            'dataNascimento.date'=>'coloque sua data corretamente',
-
-            'cidade.required' => 'Preencha o campo cidade',
-            'cidade.max' => 'Este campo deve conter no maximo 120 caractéris',
-       
-
-            'estado.required' => 'Preencha o campo estado',
-            'estado.max' => 'Este campo deve conter no maximo 2 caractéris',
-            'estado.min' => 'Este campo deve conter no minimo 2 caractéris',
-            
-
-            'pais.required' => 'Preencha o campo pais',
-            'pais.max' => 'Este campo deve conter no maximo 80 caractéris',
-           
-
-            'rua.required' => 'Preencha o campo rua',
-            'rua.max' => 'Este campo deve conter no maximo 120 caractéris',
-           
-
-            'numero.required' => 'Preencha o campo numero',
-            'numero.max' => 'Este campo deve conter no maximo 10 caractéris',
-
-            'bairro.required' => 'Preencha o campo bairro',
-            'bairro.max' => 'Este campo deve conter no maximo 100 caractéris',
-            
-
-            'cep.required' => 'Preencha o campo cep',
-            'cep.max' => 'Este campo deve conter no maximo 8 caractéris',
-            'cep.min' => 'o campo deve no minimo 8 caracteris',
-            'cep.numeric' => 'Este campo só aceita numeros',
-
-            'complemento.max' => 'Este campo deve conter no maximo 150 caractéris',
-
-            'password.required' => 'password obrigatória',
+            'nome.required' => 'O campo nome é obrigatório.',
+            'nome.max' => 'O campo nome deve ter no máximo 120 caracteres.',
+            'nome.min' => 'O campo nome deve ter no mínimo 5 caracteres.',
+            'celular.required' => 'O campo celular é obrigatório.',
+            'celular.max' => 'O campo celular deve ter no máximo 11 caracteres.',
+            'celular.min' => 'O campo celular deve ter no mínimo 10 caracteres.',
+            'email.required' => 'O campo email é obrigatório.',
+            'email.max' => 'O campo email deve ter no máximo 120 caracteres.',
+            'email.email' => 'O campo email deve ser um endereço de email válido.',
+            'email.unique' => 'Este email já está em uso.',
+            'cpf.required' => 'O campo CPF é obrigatório.',
+            'cpf.max' => 'O campo CPF deve ter no máximo 11 caracteres.',
+            'cpf.min' => 'O campo CPF deve ter no mínimo 11 caracteres.',
+            'cpf.unique' => 'Este CPF já está cadastrado.',
+            'dataNascimento.required' => 'O campo data de nascimento é obrigatório.',
+            'dataNascimento.date' => 'O campo data de nascimento deve ser uma data válida.',
+            'cidade.required' => 'O campo cidade é obrigatório.',
+            'cidade.max' => 'O campo cidade deve ter no máximo 120 caracteres.',
+            'estado.required' => 'O campo estado é obrigatório.',
+            'estado.max' => 'O campo estado deve ter no máximo 2 caracteres.',
+            'estado.min' => 'O campo estado deve ter no mínimo 2 caracteres.',
+            'pais.required' => 'O campo país é obrigatório.',
+            'pais.max' => 'O campo país deve ter no máximo 80 caracteres.',
+            'rua.required' => 'O campo rua é obrigatório.',
+            'rua.max' => 'O campo rua deve ter no máximo 120 caracteres.',
+            'numero.required' => 'O campo número é obrigatório.',
+            'numero.max' => 'O campo número deve ter no máximo 10 caracteres.',
+            'bairro.required' => 'O campo bairro é obrigatório.',
+            'bairro.max' => 'O campo bairro deve ter no máximo 100 caracteres.',
+            'cep.required' => 'O campo CEP é obrigatório.',
+            'cep.max' => 'O campo CEP deve ter no máximo 8 caracteres.',
+            'cep.min' => 'O campo CEP deve ter mínimo 8 caracteres.',
+            'complemento.max' => 'O campo complemento deve ter no máximo :max caracteres.',
+            'password.required' => 'O campo senha é obrigatório.',
 
             'salario.required' => 'Preencha o campo salario',
             'salario.max' => 'Este campo deve conter no maximo 8 caractéris',
             'salario.min' => 'o campo deve no minimo 8 caracteris',
-            'salario.decimal' => 'Este campo só aceita numeros'
+            'salario.decimal' => 'Este campo só aceita numeros decimais'
         ];
 
 

@@ -24,21 +24,20 @@ class ClienteUpdateFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => '|max:120|min:5',
-            'celular' => '|max:11|min:10|',
-            'email'  => '|max:120|',
-            'cpf' => '|max:11|min:11|',
-            'dataNascimento' => '',
-            'cidade' => '|max:120|',
-            'estado' => '|max:2|min:2',
-            'pais' => '|max:80',
-            'rua' => '|max:120',
-            'numero' => '|max:10',
-            'bairro' => '|max:100',
-            'cep' => '|max:8',
+            'nome' => 'max:120|min:5',
+            'celular' => 'max:11|min:10|',
+            'email'  => 'max:120|email',
+            'cpf' => 'max:11|min:11',
+            'dataNascimento' => 'date',
+            'cidade' => 'max:120',
+            'estado' => 'max:2|min:2',
+            'pais' => 'max:80',
+            'rua' => 'max:120',
+            'numero' => 'max:10',
+            'bairro' => 'max:100',
+            'cep' => 'max:8|min:8',
             'complemento' => 'max:150',
-            'password' => ''
-    
+            
         ];
     }
     public function failedValidation(Validator $validator){
@@ -53,55 +52,40 @@ class ClienteUpdateFormRequest extends FormRequest
     {
         return  [
             
-            'nome.max' => 'Este campo deve conter no maximo 120 caractéris',
-            'nome.min' => 'Este campo deve conter no minimo 5 caractéris',
             
-
-
-            'celular.max' => 'Este campo deve conter no maximo 11 caractéris',
-            'celular.min' => 'Este campo deve conter no minimo 10 caractéris',
-
-          
-            'email.email' => 'formato inválido',
-
-            
-            'cpf.max' => 'o campo deve conter 11 caracteris',
-            'cpf.min' => 'o campo deve no minimo 11 caracteris',
-
-            
-            'dataNascimento.date'=>'coloque sua data corretamente',
-
+            'nome.max' => 'O campo nome deve ter no máximo 120 caracteres.',
+            'nome.min' => 'O campo nome deve ter no mínimo 5 caracteres.',
            
-            'cidade.max' => 'Este campo deve conter no maximo 120 caractéris',
-            
-
-            
-            'estado.max' => 'Este campo deve conter no maximo 2 caractéris',
-            'estado.min' => 'Este campo deve conter no minimo 2 caractéris',
-            
-
+            'celular.max' => 'O campo celular deve ter no máximo 11 caracteres.',
+            'celular.min' => 'O campo celular deve ter no mínimo 10 caracteres.',
            
-            'pais.max' => 'Este campo deve conter no maximo 80 caractéris',
+            'email.max' => 'O campo email deve ter no máximo 120 caracteres.',
+            'email.email' => 'O campo email deve ser um endereço de email válido.',
             
-
+            
+            'cpf.max' => 'O campo CPF deve ter no máximo 11 caracteres.',
+            'cpf.min' => 'O campo CPF deve ter no mínimo 11 caracteres.',
+            
            
-            'rua.max' => 'Este campo deve conter no maximo 120 caractéris',
+            'dataNascimento.date' => 'O campo data de nascimento deve ser uma data válida.',
             
-
-           
-            'numero.max' => 'Este campo deve conter no maximo 10 caractéris',
-
+            'cidade.max' => 'O campo cidade deve ter no máximo 120 caracteres.',
             
-            'bairro.max' => 'Este campo deve conter no maximo 100 caractéris',
-            'bairro.string' => 'Este campo só aceita letras',
-
-         
-            'cep.max' => 'Este campo deve conter no maximo 8 caractéris',
-            'cep.min' => 'o campo deve no minimo 8 caracteris',
-            'cep.numeric' => 'Este campo só aceita numeros',
-
-            'complemento.max' => 'Este campo deve conter no maximo 150 caractéris',
-
+            'estado.max' => 'O campo estado deve ter no máximo 2 caracteres.',
+            'estado.min' => 'O campo estado deve ter no mínimo 2 caracteres.',
+            
+            'pais.max' => 'O campo país deve ter no máximo 80 caracteres.',
+            
+            'rua.max' => 'O campo rua deve ter no máximo 120 caracteres.',
+            
+            'numero.max' => 'O campo número deve ter no máximo 10 caracteres.',
+            
+            'bairro.max' => 'O campo bairro deve ter no máximo 100 caracteres.',
+            
+            'cep.max' => 'O campo CEP deve ter no máximo 8 caracteres.',
+            'cep.min' => 'O campo CEP deve ter mínimo 8 caracteres.',
+            'complemento.max' => 'O campo complemento deve ter no máximo :max caracteres.',
+            
             
         ];
 
