@@ -12,23 +12,44 @@ class AgendaController extends Controller
     public function cadastroAgenda(AgendaFormRequest $request)
     {
 
-        $agenda = Agenda::create([
+       
+
+        $data_hora = Agenda::where('data_hora', '=', $request->data_hora)->first();
 
 
-            'profissional_id' => $request->profissional_id,
+        if(count($data_hora)>0){
+
+            return response()->json([
+                "status" => false,
+                "message" => "Erro, data já cadastrada"
+                
+    
+            ], 200);
+
             
-            'data_hora' => $request->data_hora,
-            
+        }
+
+        else if(count($agenda)<=0){
+            $agenda = Agenda::create([
 
 
-
-        ]);
-        return response()->json([
-            "status" => true,
-            "message" => "Agenda Cadastrada com sucesso",
-            "data" => $agenda
-
-        ], 200);
+                'profissional_id' => $request->profissional_id,
+                
+                'data_hora' => $request->data_hora,
+                
+    
+    
+    
+            ]);
+            return response()->json([
+                "status" => true,
+                "message" => "Agenda Cadastrada com sucesso",
+                "data" => $agenda
+    
+            ], 200);
+        }
+       
+       
     }
 
 
