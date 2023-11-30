@@ -39,7 +39,7 @@ Route::put('update/agenda', [AgendaController::class, 'editarAgenda']);
 
 
 
-//-----------------------------------------------Vizualizar-----------------------------------------------------
+//-----------------------------------------------Visualizar-----------------------------------------------------
 
 Route::get('all/cliente', [ClienteController::class, 'retornarTodosClientes']);
 
@@ -71,13 +71,13 @@ Route::delete('excluir/agenda/{id}', [AgendaController::class, 'excluirAgenda'])
 
 //--------------------------------------------Pesquisas-Cliente-------------------------------------------------
 
-Route::post('nome/cliente', [ClienteController::class, 'pesquisarClientePorNome']);
+Route::post('pesquisar/nome/cliente', [ClienteController::class, 'pesquisarClientePorNome']);
 
-Route::get('cpf/cliente', [ClienteController::class, 'pesquisarClientePorCpf']);
+Route::post('pesquisar/cpf/cliente', [ClienteController::class, 'pesquisarClientePorCpf']);
 
-Route::get('celular/cliente', [ClienteController::class, 'pesquisarClientePorCelular']);
+Route::post('pesquisar/celular/cliente', [ClienteController::class, 'pesquisarClientePorCelular']);
 
-Route::get('email/cliente', [ClienteController::class, 'pesquisarClientePorEmail']);
+Route::post('pesquisar/email/cliente', [ClienteController::class, 'pesquisarClientePorEmail']);
 
 Route::get('find/cliente/{id}',[ClienteController::class, 'pesquisarPorId']);
 
@@ -88,13 +88,13 @@ Route::get('find/cliente/{id}',[ClienteController::class, 'pesquisarPorId']);
 
 //------------------------------------------Pesquisas-Profissionais---------------------------------------------
 
-Route::post('nome/profissional', [ProfissionalController::class, 'pesquisarPorNomeProfissional']);
+Route::post('pesquisar/nome/profissional', [ProfissionalController::class, 'pesquisarPorNomeProfissional']);
 
-Route::post('cpf/profissional/{cpf}', [ProfissionalController::class, 'pesquisarPorCpfProfissional']);
+Route::post('pesquisar/cpf/profissional', [ProfissionalController::class, 'pesquisarPorCpfProfissional']);
 
-Route::post('celular/profissional', [ProfissionalController::class, 'pesquisarPorCelularProfissional']);
+Route::post('pesquisar/celular/profissional', [ProfissionalController::class, 'pesquisarPorCelularProfissional']);
 
-Route::post('email/profissional', [ProfissionalController::class, 'pesquisarPorEmailProfissional']);
+Route::post('pesquisar/email/profissional', [ProfissionalController::class, 'pesquisarPorEmailProfissional']);
 
 Route::get('find/profissional/{id}',[ProfissionalController::class, 'pesquisarPorId']);
 
@@ -106,8 +106,6 @@ Route::get('find/profissional/{id}',[ProfissionalController::class, 'pesquisarPo
 //---------------------------------------------Pesquisas-Serviços----------------------------------------------
 
 Route::get('find/servico/{id}',[ServicoController::class, 'pesquisarPorId']);  
-
-Route::get('find/servico/cpf/{cpf}', [ServicoController::class, 'pesquisarPorCpf']);
 
 Route::post('pesquisar/nome/servico', [ServicoController::class, 'pesquisarPorNome']);
 
@@ -124,7 +122,7 @@ Route::post('agenda/pesquisar/profissional', [AgendaController::class, 'pesquisa
 
 Route::get('find/agenda/{id}',[AgendaController::class, 'pesquisarPorId']);
 
-Route::post('agenda/pesquisar/data', [AgendaController::class, 'pesquisarPorData']);
+Route::post('pesquisar/data/agenda', [AgendaController::class, 'pesquisarPorData']);
 
 //-------------------------------------------------------------------------------------------------------------
 

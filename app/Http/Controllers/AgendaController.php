@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AgendaFormRequest;
 use App\Http\Requests\AgendaUpdateFormRequest;
 use App\Models\Agenda;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AgendaController extends Controller
@@ -12,52 +13,60 @@ class AgendaController extends Controller
     public function cadastroAgenda(AgendaFormRequest $request)
     {
 
-       
+        $dataAtual = now();
 
-        $data_hora = Agenda::where('data_hora', '=', $request->data_hora)->first();
+        $data_hora = $request->data_hora;
 
-
-        if(count($data_hora)>0){
-
+        if ($data_hora < $dataAtual) {
             return response()->json([
                 "status" => false,
-                "message" => "Erro, data já cadastrada"
-                
-    
-            ], 200);
-
-            
+                "message" => "A data e hora devem ser posteriores ao dia de hoje."
+            ], 400);
         }
 
-        else if(count($agenda)<=0){
-            $agenda = Agenda::create([
 
 
-                'profissional_id' => $request->profissional_id,
-                
-                'data_hora' => $request->data_hora,
-                
-    
-    
-    
-            ]);
+        $agendaExistente = Agenda::where('profissional_id', $request->profissional_id)->where('data_hora', $data_hora)->first();
+
+
+        if ($agendaExistente) {
             return response()->json([
-                "status" => true,
-                "message" => "Agenda Cadastrada com sucesso",
-                "data" => $agenda
-    
-            ], 200);
+                "status" => false,
+                "message" => "Já existe uma agenda cadastrada para essa data e profissional."
+            ], 400);
         }
-       
-       
+
+
+        $agenda = Agenda::create([
+
+
+            'profissional_id' => $request->profissional_id,
+            'cliente_id'=> $request->cliente_id,
+            'servico_id'=> $request->servico_id,
+            'data_hora' => $request->data_hora,
+            'pagamento'=> $request->pagamento,
+        'valor'=> $request->valor,
+
+
+
+        ]);
+        return response()->json([
+            "status" => true,
+            "message" => "Agenda Cadastrada com sucesso",
+            "data" => $agenda
+
+        ], 200);
     }
+
+
+
 
 
     public function pesquisarPorData(Request $request)
     {
 
 
-        $agenda = Agenda::where('data_hora', 'like','%'. $request->data_hora. '%')->get();
+        $agenda = Agenda::where('data_hora', 'like', '%' . $request->data_hora . '%')->get();
 
 
         if (count($agenda) > 0) {
@@ -129,7 +138,7 @@ class AgendaController extends Controller
         ]);
     }
 
-    public function editarAgenda(AgendaUpdateFormRequest $request) 
+    public function editarAgenda(AgendaUpdateFormRequest $request)
     {
         $agenda = Agenda::find($request->id);
         if (!isset($agenda)) {
@@ -139,13 +148,29 @@ class AgendaController extends Controller
             ]);
         }
 
+        // Data e hora atual
+        $dataAtual = now();
+
+        // Data e hora da agenda
+        $dataHoraAgenda = Carbon::parse($agenda->data_hora);
+
+        // Verificar se o reagendamento está dentro do limite (3 horas)
+        $limiteReagendamento = $dataHoraAgenda->subHours(3);
+
+        if ($dataAtual->gt($limiteReagendamento)) {
+            return response()->json([
+                'status' => false,
+                'message' => "Não é possível reagendar a agenda. O prazo mínimo para reagendamento é de 3 horas antes do compromisso."
+            ]);
+        }
+
         if (isset($request->profissional_id)) {
             $agenda->profissional_id = $request->profissional_id;
         }
         if (isset($request->data_hora)) {
             $agenda->data_hora = $request->data_hora;
         }
-/*
+
         if (isset($request->cliente_id)) {
             $agenda->cliente_id = $request->cliente_id;
         }
@@ -154,7 +179,7 @@ class AgendaController extends Controller
         }
         if (isset($request->valor)) {
             $agenda->valor = $request->valor;
-        }*/
+        }
 
         $agenda->update();
 
@@ -168,7 +193,7 @@ class AgendaController extends Controller
     {
         $agenda = Agenda::find($id);
 
-        if (!isset($agenda)) {  
+        if (!isset($agenda)) {
             return response()->json([
                 'status' => false,
                 'message' => "Agenda não cadastrado"
