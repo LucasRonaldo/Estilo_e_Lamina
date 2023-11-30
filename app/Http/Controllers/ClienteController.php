@@ -14,6 +14,8 @@ class ClienteController extends Controller
     public function cadastrarCliente(ClienteFormRequest $request)
     {
 
+        
+
         $cliente = Cliente::create([
 
 

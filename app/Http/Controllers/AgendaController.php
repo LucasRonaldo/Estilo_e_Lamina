@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AgendaFormRequest;
 use App\Http\Requests\AgendaUpdateFormRequest;
 use App\Models\Agenda;
+use App\Models\Profissional;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,17 @@ class AgendaController extends Controller
                 "message" => "Já existe uma agenda cadastrada para essa data e profissional."
             ], 400);
         }
+
+        $profissional_Id = Profissional::where('profissional', $request->profissional)->first();
+
+
+        if ($profissional_Id) {
+            return response()->json([
+                "status" => false,
+                "message" => "Profissional não encontrado"
+            ], 400);
+        }
+
 
 
         $agenda = Agenda::create([
@@ -113,9 +125,17 @@ class AgendaController extends Controller
     public function retornarTodosAgenda()
     {
         $agenda = Agenda::all();
+       
+        if(count($agenda)> 0){
+            return response()->json([
+                'status' => true,
+                'data' => $agenda
+            ]);
+        }
+
         return response()->json([
-            'status' => true,
-            'data' => $agenda
+            'status' => false,
+            'message' => 'Nenhum registro no sistema'
         ]);
     }
 
