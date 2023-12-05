@@ -47,16 +47,16 @@ class ServicoUpdateFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'o campo nome deve conter no maximo 80 caracteres',
+            'nome.required' => 'o campo nome é obrigatorio',
             'nome.max' => 'o campo nome deve conter no maximo 80 caracteres',
             'nome.min' => 'o campo nome deve conter no minimo 5 caracteres',
             
-           
+            'descricao.required' => 'o campo descrição é obrigatorio',
             'descricao.max' => 'descrição deve conter no máximo 200 caracteres',
             'descricao.min' => 'descrição deve conter no minimo 10 caracteres',
-           
+            'duracao.required' => 'o campo duração é obrigatorio',
             'duracao.numeric' => 'duração só aceita numeros',
-           
+            'preco.required' => 'o campo preço é obrigatorio',
             'preco.preco' => 'Formato de preço inválido',
             'preco.decimal' => 'Este campo recebe apenas numeros decimais'
 

@@ -51,11 +51,11 @@ class AgendaFormRequest extends FormRequest
 
 
             'pagamento.required' => 'preencha o campo',
-            'pagamento.max' => 'o campo deve conter 20 caracteris',
-            'pagamento.min' => 'o campo deve no minimo 3 caracteris',
+            'pagamento.max' => 'o campo deve conter 20 caracteres',
+            'pagamento.min' => 'o campo deve no minimo 3 caracteres',
 
 
-            'valor.required' => 'Valor obrigatorio'
+          
 
         ];
     }
