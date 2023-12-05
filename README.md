@@ -15,7 +15,7 @@ Certifique-se de ter os seguintes requisitos atendidos antes de começar a traba
 
 1. Clone este repositório para o seu ambiente de desenvolvimento local utilizando o comando:
 ```
- git clone https://github.com/gabigpalharini/estilo_e_lamina.git
+ git clone https://github.com/LucasRonaldo/Estilo_e_Lamina.git
  ```
 2. Acesse o diretório do projeto:
 ```
@@ -35,8 +35,8 @@ code .
 ```
 6. Acessar o usuário e email
 ```
-git config --global user.email "gabigplharini@gmail.com"
-git config --global user.name "gabigpalharini"
+git config --global user.email "email@gmail.com"
+git config --global user.name "userName"
 ```
 ## insomnia
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=academia-api&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcestari15%2Facademia-api%2Fmain%2Finsomnia.json%3Ftoken%3DGHSAT0AAAAAACGBYDRKBG3MCQSZKXPCDWNKZGSEWTQ)
