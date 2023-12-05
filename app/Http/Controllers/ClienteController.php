@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClienteFormRequest;
 use App\Http\Requests\ClienteUpdateFormRequest;
 use App\Models\Cliente;
+use App\Models\Profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
@@ -58,6 +59,8 @@ class ClienteController extends Controller
 
         
     }
+
+    
 
     public function retornarTodosClientes()
     {
@@ -273,6 +276,102 @@ class ClienteController extends Controller
             'password' => $cliente->password
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+// ignorar
+    public function login(Request $request) {
+        $cliente = Cliente::where('email', '=', $request->email)->first();
+        $profissional = Profissional::where('email', '=', $request->email)->first();
+    
+        if (!$cliente && !$profissional) {
+            return response()->json([
+                'status' => false,
+                'message' => 'E-mail inválido'
+            ]);
+        }
+    
+        if ($cliente && Hash::check($request->password, $cliente->password)) {
+            return response()->json([
+                'status' => true,
+                'usuario' => 'Cliente',
+                'message' => 'Bem-vindo(a) ' . $cliente->nome,
+                'data'=> $cliente
+            ]);
+        }
+    
+        if ($profissional && Hash::check($request->password, $profissional->password)) {
+            return response()->json([
+                'status' => true,
+                'usuario' => 'Profissional',
+                'message' => 'Bem-vindo(a) ' . $profissional->nome,
+                'data'=> $profissional
+            ]);
+        }
+    
+        return response()->json([
+            'status' => false,
+            'message' => 'Senha inválida'
+        ]);
+    }
+    
 }
 
 //Pronto

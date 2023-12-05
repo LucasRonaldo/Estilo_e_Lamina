@@ -46,19 +46,8 @@ class ProfissionalController extends Controller
             ], 200);
         }
 
-        return response()->json([
-            "status" => false,
-            'title' => 'Erro',
-            "message" => "Profissional não foi cadastrado",
-            "data" => $profissional
-
-        ], 200);
+       
     }
-
-
-
-
-
 
 
     public function retornarTodosProfissionais()
@@ -105,13 +94,14 @@ class ProfissionalController extends Controller
         ]); 
     }
 
+
     public function editarProfissional(ProfissionalUpdateFormRequest $request)
     {
         $profissional = Profissional::find($request->id);
         if (!isset($profissional)) {
             return response()->json([
                 'status' => false,
-                'message' => "Profissional não Sencontrado"
+                'message' => "Profissional não encontrado"
             ]);
         }
 
@@ -173,8 +163,7 @@ class ProfissionalController extends Controller
         ]);
     }
 
-
-
+//Pesquisas
     public function pesquisarPorId($id)
     {
         $profissional = Profissional::find($id);
@@ -284,13 +273,13 @@ class ProfissionalController extends Controller
             ]);
         }
         if (isset($profissional->cpf)) {
-            $profissional->password = $profissional->cpf;
+            $profissional->password = Hash::make( $profissional->cpf );
         }
         $profissional->update();
 
         return response()->json([
             'status' => true,
-            'password' => $profissional->cpf
+            'password' => $profissional->password
         ]);
     }
 }

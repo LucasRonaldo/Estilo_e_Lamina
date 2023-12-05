@@ -118,7 +118,7 @@ Route::post('pesquisar/descricao/servico', [ServicoController::class, 'pesquisar
 
 //----------------------------------------------Pesquisas-Agenda-----------------------------------------------
 
-Route::post('agenda/pesquisar/profissional', [AgendaController::class, 'pesquisarAgendaPorIdProfissional']); //
+Route::post('pesquisar/profissional/agenda', [AgendaController::class, 'pesquisarAgendaPorIdProfissional']); //
 
 Route::get('find/agenda/{id}',[AgendaController::class, 'pesquisarPorId']);
 
@@ -137,3 +137,9 @@ Route::put ('recuperar/senha/profissional', [ProfissionalController::class, 'rec
 
 //------------------------------------------------------------------------------------------------------------
 
+
+
+
+//login
+
+Route::post('/login', [ClienteController::class, 'login']);

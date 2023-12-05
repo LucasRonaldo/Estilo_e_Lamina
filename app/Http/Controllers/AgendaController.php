@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AgendaFormRequest;
 use App\Http\Requests\AgendaUpdateFormRequest;
 use App\Models\Agenda;
+
 use App\Models\Profissional;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -14,21 +16,44 @@ class AgendaController extends Controller
     public function cadastroAgenda(AgendaFormRequest $request)
     {
 
-        $dataAtual = now();
+        $dataAtual = Carbon::now('America/Sao_Paulo');
 
-        $data_hora = $request->data_hora;
+        $data_hora = Carbon::parse($request->data_hora);
 
-        if ($data_hora < $dataAtual) {
+        if ($dataAtual->gt($data_hora)) {
             return response()->json([
                 "status" => false,
-                "message" => "A data e hora devem ser posteriores ao dia de hoje."
+                "error" => ["A data e hora devem ser posteriores ao dia de hoje."]
+            ], 400);
+        }
+        /*
+        // Calcula a diferença entre a data/hora agendada e a data atual em horas
+        $diferencaHoras = $data_hora->diffInHours($dataAtual);
+        
+       
+        // Verifica se a diferença é menor que 1 hora (60 minutos)
+        if ($diferencaHoras < 1) {
+            return response()->json([
+                "status" => false,
+                "message" => "Você só pode agendar com no mínimo 1 hora de antecedência."
+            ], 400);
+        }*/
+
+
+
+
+        $profissional = Profissional::find($request->profissional_id);
+
+        if (!$profissional) {
+            return response()->json([
+                "status" => false,
+                "message" => "Profissional não encontrado"
             ], 400);
         }
 
-
-
-        $agendaExistente = Agenda::where('profissional_id', $request->profissional_id)->where('data_hora', $data_hora)->first();
-
+        $agendaExistente = Agenda::where('profissional_id', $request->profissional_id)
+            ->where('data_hora', $data_hora)
+            ->first();
 
         if ($agendaExistente) {
             return response()->json([
@@ -37,27 +62,16 @@ class AgendaController extends Controller
             ], 400);
         }
 
-        $profissional_Id = Profissional::where('profissional', $request->profissional)->first();
-
-
-        if ($profissional_Id) {
-            return response()->json([
-                "status" => false,
-                "message" => "Profissional não encontrado"
-            ], 400);
-        }
-
-
 
         $agenda = Agenda::create([
 
 
             'profissional_id' => $request->profissional_id,
-            'cliente_id'=> $request->cliente_id,
-            'servico_id'=> $request->servico_id,
+            'cliente_id' => $request->cliente_id,
+            'servico_id' => $request->servico_id,
             'data_hora' => $request->data_hora,
-            'pagamento'=> $request->pagamento,
-        'valor'=> $request->valor,
+            'pagamento' => $request->pagamento,
+            'valor' => $request->valor,
 
 
 
@@ -125,8 +139,8 @@ class AgendaController extends Controller
     public function retornarTodosAgenda()
     {
         $agenda = Agenda::all();
-       
-        if(count($agenda)> 0){
+
+        if (count($agenda) > 0) {
             return response()->json([
                 'status' => true,
                 'data' => $agenda
@@ -160,7 +174,10 @@ class AgendaController extends Controller
 
     public function editarAgenda(AgendaUpdateFormRequest $request)
     {
+
         $agenda = Agenda::find($request->id);
+
+
         if (!isset($agenda)) {
             return response()->json([
                 'status' => false,
@@ -168,21 +185,34 @@ class AgendaController extends Controller
             ]);
         }
 
-        // Data e hora atual
-        $dataAtual = now();
 
-        // Data e hora da agenda
-        $dataHoraAgenda = Carbon::parse($agenda->data_hora);
 
-        // Verificar se o reagendamento está dentro do limite (3 horas)
-        $limiteReagendamento = $dataHoraAgenda->subHours(3);
+        /* $profissional = Profissional::find($request->profissional_id);
 
-        if ($dataAtual->gt($limiteReagendamento)) {
+        if (!$profissional) {
             return response()->json([
-                'status' => false,
-                'message' => "Não é possível reagendar a agenda. O prazo mínimo para reagendamento é de 3 horas antes do compromisso."
-            ]);
+                "status" => false,
+                "message" => "Profissional não encontrado"
+            ], 400);
         }
+
+       /* $cliente = Cliente::find($request->cliente_id);
+
+        if (!$cliente) {
+            return response()->json([
+                "status" => false,
+                "message" => "Cliente não encontrado"
+            ], 400);
+        }
+
+        $servico = Servico::find($request->servico_id);
+
+        if (!$servico) {
+            return response()->json([
+                "status" => false,
+                "message" => "Serviço não encontrado"
+            ], 400);
+        }*/
 
         if (isset($request->profissional_id)) {
             $agenda->profissional_id = $request->profissional_id;

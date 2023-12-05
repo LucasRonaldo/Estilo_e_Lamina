@@ -23,16 +23,16 @@ class AgendaUpdateFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        
-            return [
-                'profissional_id' => '|integer',
+
+        return [
            
-            'data_hora' => '|date'
-                    ];
-        
+
+            'data_hora' => 'date'
+        ];
     }
 
-    public function failedValidation(Validator $validator){
+    public function failedValidation(Validator $validator)
+    {
         throw new HttpResponseException(response()->json([
             'success' => false,
             'error' => $validator->errors()
@@ -42,21 +42,16 @@ class AgendaUpdateFormRequest extends FormRequest
     public function messages()
     {
         return  [
-            
-            
+
+
+
+
+
+            'data_hora.date' => 'formato inválido',
+
 
 
            
-            'data_hora.date' => 'formato inválido',
-            
-
-            
-            'pagamento.max' => 'o campo deve conter 20 caracteris',
-            'pagamento.min' => 'o campo deve no minimo 3 caracteris',
-
-
-            
-            
         ];
-}
+    }
 }

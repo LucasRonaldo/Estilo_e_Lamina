@@ -24,18 +24,19 @@ class ServicoFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-        
-                'nome' => 'required|max:80|min:5|unique:servicos,nome',
+
+            'nome' => 'required|max:80|min:5|unique:servicos,nome',
             'descricao' => 'required|max:200|min:10|',
-            'duracao'  => 'required|numeric',
+            'duracao'  => 'required|numeric|integer',
             'preco' => 'required|decimal:2,4'
-            
+
 
 
         ];
     }
 
-    public function failedValidation(Validator $validator){
+    public function failedValidation(Validator $validator)
+    {
         throw new HttpResponseException(response()->json([
             'success' => false,
             'error' => $validator->errors()
@@ -43,22 +44,24 @@ class ServicoFormRequest extends FormRequest
     }
 
 
-    public function messages(){
-        return[
-'nome.required' => 'O campo nome é obrigatorio',
-'nome.max' => 'o campo nome deve conter no maximo 80 caracteres',
-'nome.min' => 'o campo nome deve conter no minimo 5 caracteres',
-'nome.unique' => 'O nome já foi cadastrado',
-'descricao.required' => 'descrição obrigatorio',
-'descricao.max' => 'descrição deve conter no máximo 200 caracteres',
-'descricao.min' => 'descrição deve conter no minimo 10 caracteres',
-'descricao.unique' => 'descrição já cadastrado no sistema',
-'duracao.required' => 'duração obrigatorio',
-'duracao.numeric' => 'duração só aceita numeros',
-'preco.required' => 'Preço obrigatório',
-'preco.preco' => 'Formato de preço inválido',
-'preco.unique' => 'Preço já cadastrado no sistema',
-'preco.decimal' => 'Este campo recebe apenas numeros decimais'
+    public function messages()
+    {
+        return [
+            'nome.required' => 'O campo nome é obrigatorio',
+            'nome.max' => 'o campo nome deve conter no maximo 80 caracteres',
+            'nome.min' => 'o campo nome deve conter no minimo 5 caracteres',
+            'nome.unique' => 'O nome já foi cadastrado',
+            'descricao.required' => 'descrição obrigatorio',
+            'descricao.max' => 'descrição deve conter no máximo 200 caracteres',
+            'descricao.min' => 'descrição deve conter no minimo 10 caracteres',
+            'duracao.required' => 'duração obrigatorio',
+            'duracao.numeric' => 'duração só aceita numeros',
+            'duracao.integer' => 'duração só aceita numeros inteiros',
+
+            'preco.required' => 'Preço obrigatório',
+            'preco.preco' => 'Formato de preço inválido',
+            'preco.unique' => 'Preço já cadastrado no sistema',
+            'preco.decimal' => 'Este campo recebe apenas numeros decimais'
 
         ];
     }

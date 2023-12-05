@@ -25,10 +25,10 @@ class ServicoUpdateFormRequest extends FormRequest
     {
         return [
 
-            'nome' => '|max:80|min:5|',
-            'descricao' => '|max:200|min:10|',
-            'duracao'  => '|numeric',
-            'preco' => '|decimal:2,4'
+            'nome' => 'required|max:80|min:5|',
+            'descricao' => 'required|max:200|min:10|',
+            'duracao'  => 'required|numeric',
+            'preco' => 'required|decimal:2,4'
 
 
 
@@ -47,7 +47,7 @@ class ServicoUpdateFormRequest extends FormRequest
     public function messages()
     {
         return [
-           
+            'nome.required' => 'o campo nome deve conter no maximo 80 caracteres',
             'nome.max' => 'o campo nome deve conter no maximo 80 caracteres',
             'nome.min' => 'o campo nome deve conter no minimo 5 caracteres',
             
