@@ -172,17 +172,27 @@ class AgendaController extends Controller
         ]);
     }
 
-    public function editarAgenda(AgendaUpdateFormRequest $request)
+    public function editarAgenda(Request $request)
     {
-
         $agenda = Agenda::find($request->id);
-
+        
 
         if (!isset($agenda)) {
             return response()->json([
                 'status' => false,
                 'message' => "Agenda não encontrado"
             ]);
+        }
+
+        $dataAtual = Carbon::now('America/Sao_Paulo');
+
+        $data_hora = Carbon::parse($request->data_hora);
+
+        if ($dataAtual->gt($data_hora)) {
+            return response()->json([
+                "status" => false,
+                "error" => ["A data e hora devem ser posteriores ao dia de hoje."]
+            ], 400);
         }
 
 

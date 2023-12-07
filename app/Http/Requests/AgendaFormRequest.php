@@ -54,9 +54,6 @@ class AgendaFormRequest extends FormRequest
             'pagamento.max' => 'o campo deve conter 20 caracteres',
             'pagamento.min' => 'o campo deve no minimo 3 caracteres',
 
-
-          
-
         ];
     }
 }

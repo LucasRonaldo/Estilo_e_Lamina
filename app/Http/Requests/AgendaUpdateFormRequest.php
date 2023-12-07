@@ -42,16 +42,7 @@ class AgendaUpdateFormRequest extends FormRequest
     public function messages()
     {
         return  [
-
-
-
-
-
             'data_hora.date' => 'formato inválido',
-
-
-
-           
         ];
     }
 }
